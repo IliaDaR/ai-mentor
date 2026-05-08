@@ -1,0 +1,40 @@
+name: Сборка APK
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:  # Ручной запуск
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Проверить код
+        uses: actions/checkout@v4
+
+      - name: 🎯 Установить Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version: '3.x'
+
+      - name: 📦 Установить зависимости
+        run: flutter pub get
+
+      - name: 🔨 Сгенерировать код (freezed)
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: ✅ Проверить анализ кода
+        run: flutter analyze
+
+      - name: 🏗️ Собрать APK (debug)
+        run: flutter build apk --debug
+
+      - name: 📤 Загрузить APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-mentor-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk

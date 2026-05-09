@@ -111,7 +111,7 @@ class MethodChannelHandler(private val activity: Activity) {
     private fun isNotificationAccessGranted(): Boolean {
         val enabledListeners = Settings.Secure.getString(
             activity.contentResolver,
-            Settings.Secure.ENABLED_NOTIFICATION_LISTENERS
+            "enabled_notification_listeners"
         )
         return enabledListeners?.contains(activity.packageName) == true
     }

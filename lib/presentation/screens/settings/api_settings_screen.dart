@@ -48,7 +48,7 @@ class _ApiSettingsScreenState extends ConsumerState<ApiSettingsScreen> {
         _apiKey = apiKey;
         _selectedProvider = config['provider'] ?? 'deepseek';
         _selectedModel = config['model'] ?? 'deepseek-chat';
-        _baseUrl = config['base_url'] ?? 'https://api.deepseek.com/v1';
+        _baseUrl = config['url'] ?? 'https://api.deepseek.com/v1';
         _isLoading = false;
       });
     } catch (e) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/utils/date_utils.dart';
+// import '../../../core/utils/date_utils.dart';
 import '../../../data/models/user_progress.dart';
 import '../../../domain/providers/repository_providers.dart';
 
@@ -126,7 +126,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
                 Container(
                   width: 1,
                   height: 60,
-                  color: theme.dividerColor,
+                  color: theme.colorScheme.outlineVariant,
                 ),
                 Expanded(
                   child: Column(

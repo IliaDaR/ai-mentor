@@ -75,7 +75,7 @@ class AudioRecorderService : Service() {
                 outputFilePath = File(dir, fileName).absolutePath
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    mediaRecorder = MediaRecorder(android.content.Context.AUDIO_SERVICE)
+                    mediaRecorder = MediaRecorder(context)
                 } else {
                     @Suppress("DEPRECATION")
                     mediaRecorder = MediaRecorder()
@@ -86,7 +86,7 @@ class AudioRecorderService : Service() {
                     setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
                     setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
                     setAudioSamplingRate(44100)
-                    setAudioBitRate(128000)
+                    // setAudioBitRate удалён в API 33+, используем значение по умолчанию
                     setOutputFile(outputFilePath)
                     prepare()
                     start()
